@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-Estar que Começa na Mente</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <header>
+        <div>
+            <a href="Home.html" class="logo-btn">Natália Kieling...</a>
+        </div>
+        <nav>
+            <a href="serviços.html">Serviços</a>
+            <a href="quemSomos.html">Quem Somos</a>
+            <a class="btn-agende" onclick="window.location.href='agendeAgr.html'">Agende agora</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h1>Sua jornada para o bem-estar começa aqui.</h1>
+        <p>Com empatia e compreensão, <br> ofereço um espaço seguro <br> para que você possa se conhecer melhor<br> e seguir em frente com mais confiança.</p>
+        <button onclick="window.location.href='quemSomos.html'">SAIBA MAIS</button>
+    </div>
+
+    <section id="section1" class="section1">
+        <h2>Mais sobre <br> nossa marca</h2>
+        <p>Na nossa clínica,<br>oferecemos serviços de psicologia fundamentados<br> em rigorosos padrões científicos,  <br>
+        buscando promover a saúde mental <br>e o bem-estar emocional de nossos clientes. <br> Contamos com uma equipe altamente qualificada, <br> 
+        dedicada a proporcionar atendimentos personalizados<br> para cada necessidade.
+        </p>
+        <button onclick="window.location.href='quemSomos.html'" class="btn-saiba">SAIBA MAIS</button>
+    </section>
+
+    <section id="section2" class="section2">
+        <div class="sobre-container">
+            <h2 class="titulo-sobre">SOBRE MIM</h2>
+            <h3 class="nome-psicologa">Natalia Kieling</h3>
+            <p> ✦  Psicoterapeuta Reichiana <br><br><br>
+                ✦  2.. anos <br><br><br><br>
+                ✦  Me formei psicóloga pela UNESC mas cursei em<br> duas  outras
+                universidades antes disso <br><br><br><br>
+                ✦  Desde o início da graduação me encantei com os <br>conceitos de Freud e
+                da psicanálise,mas ao me deparar com Reich <br>compreendi a cura de uma maneira muito mais grandiosa, <br>
+                e hoje trabalho com a abordagem corporal<br><br><br><br>
+                ✦  Acredito no poder do amor e do humor
+            </p>
+        </div>
+        <img src="./imag/foto psico1.png" 
+             alt="Foto da Psicóloga" 
+             class="foto-psicologa">
+    </section>
+
+    <section id="section3" class="section3">
+        <div class="redes-sociais-texto">
+            <h2>Siga-nos nas redes sociais</h2>
+            <a href="https://www.instagram.com/nataliakpsi/" class="btn-redesSociais">REDES SOCIAIS</a>
+
+        </div>
+        <div class="container">
+            <img class="foto grande" src="./imag/cadeira.png" alt="Foto 1">
+            <img class="foto pequena" src="./imag/caixa.png" alt="Foto 2">
+            <img class="foto grande" src="./imag/lapis.png" alt="Foto 3">
+            <img class="foto pequena" src="./imag/bola.png" alt="Foto 4">
+        </div>
+    </section>
+
+    <section id="section4" class="section4">
+        <div class="container">
+            <div class="left-content">
+                <h2>Fale conosco</h2>
+                <form id="contato-form">
+                    <label1>Nome *</label1>
+                    <label2>Sobrenome *</label2>
+                    <div class="form-grupo">
+                        <input type="text" name="nome" required>
+                        <input type="text" name="sobrenome" required>
+                    </div>
+    
+                    <label>E-mail <span>(obrigatório)</span></label>
+                    <input type="email" name="email" required>
+    
+                    <label>Assunto <span>(obrigatório)</span></label>
+                    <input type="text" name="assunto" required>
+    
+                    <label>Mensagem <span>(obrigatório)</span></label>
+                    <textarea name="mensagem" rows="5" required></textarea>
+    
+                    <button type="submit" class="btn-enviar">ENVIAR</button>
+                </form>
+            </div>
+            <div class="right-content">
+                <img src="./imag/foto psico2.png" alt="Imagem Ilustrativa">
+            </div>
+        </div>
+    </section>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+   emailjs.init("EU1dbiw4DhNzd98RQ"); 
+
+   document.getElementById("contato-form").addEventListener("submit", function(event) {
+       event.preventDefault(); 
+
+       emailjs.send("service_sitepsico", "template_ovczkjj", { 
+           nome: document.querySelector("input[name='nome']").value,
+           sobrenome: document.querySelector("input[name='sobrenome']").value,
+           email: document.querySelector("input[name='email']").value,
+           assunto: document.querySelector("input[name='assunto']").value,
+           mensagem: document.querySelector("textarea[name='mensagem']").value
+       }).then(function(response) {
+           mostrarToast("✅ E-mail enviado com sucesso!", "#656565");
+       }, function(error) {
+           mostrarToast("❌ Erro ao enviar o e-mail. Tente novamente.", "#656565");
+       });
+   });
+
+   function mostrarToast(mensagem, cor) {
+       var toast = document.getElementById("toast");
+       toast.innerText = mensagem;
+       toast.style.backgroundColor = cor;
+       toast.classList.add("show");
+
+       setTimeout(function() {
+           toast.classList.remove("show");
+       }, 3000);
+   }
+</script>
+
+<div id="toast" class="toast"></div>
+    
+
+<footer>
+    <h2>Título do seu site</h2>
+    <p>123 Rua exemplo, Nova York NY<br><br>(055) 99955-5555<br><br>e-mail@exemplo.com </p>
+    <div class="social-icons">
+        <a href="https://www.instagram.com/nataliakpsi/" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram">
+        </a>
+    </div>
+</footer>
+
+<script>
+
+    window.addEventListener("scroll", function() {
+        let header = document.querySelector("header");
+        if (window.scrollY > 50) {  
+            header.classList.add("scrolled");  
+        } else {
+            header.classList.remove("scrolled");  
+        }
+    });
+
+
+    document.getElementById("cadastrar").addEventListener("click", function() {
+        let email = document.getElementById("email").value;
+
+        if (!email.includes("@") || !email.includes(".")) {
+            mostrarMensagem("❌ E-mail inválido!", "red");
+            return;
+        }
+
+        fetch("https://SEU_BACKEND/salvar_email", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: email })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.sucesso) {
+                mostrarMensagem("✅ E-mail cadastrado com sucesso!", "green");
+                document.getElementById("email").value = "";
+            } else {
+                mostrarMensagem("❌ Erro ao cadastrar. Tente novamente!", "red");
+            }
+        })
+        .catch(() => mostrarMensagem("❌ Erro ao conectar com o servidor!", "red"));
+    });
+
+    function mostrarMensagem(texto, cor) {
+        let mensagem = document.getElementById("mensagem");
+        mensagem.innerText = texto;
+        mensagem.style.color = cor;
+        mensagem.style.marginTop = "10px";
+    }
+    ocument.querySelector("button").addEventListener("click", async () => {
+    const email = document.querySelector("input").value;
+
+    if (!email) {
+        alert("Digite um e-mail válido!");
+        return;
+    }
+
+    try {
+        const response = await fetch("http://localhost:3000/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email })
+        });
+
+        const data = await response.json();
+        alert(data.message);
+    } catch (error) {
+        alert("Erro ao cadastrar e-mail!");
+    }
+});
+
+</script>
+    
+</body>
+</html>
